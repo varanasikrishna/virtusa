@@ -39,6 +39,7 @@ app.post('/api/student',(req,resp) =>{
     const newStudent = {
         name: req.body.name,
         age: req.body.age,
+        dept: req.body.dept,
         id:studentsList.length + 1
     };
 
@@ -56,5 +57,13 @@ app.delete('/api/delete/:id',(req,resp) =>{
     resp.json(idToBeDeleted);
 });
 
-app.listen(5000);
+app.get('/api/student/:id',(req,resp) =>{
+    console.log(req);
+    const idToBeDeleted=parseInt(req.params.id);
+    const studentToBeDeleted=studentsList.find(student => student.id === idToBeDeleted);
+    studentsList.splice(studentToBeDeleted,1);
+    resp.json(studentToBeDeleted);
+});
+
+app.listen(5002);
     
