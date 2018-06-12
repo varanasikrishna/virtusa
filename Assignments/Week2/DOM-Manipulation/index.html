@@ -36,10 +36,10 @@
         <div id="block2">5. On mouse click, can you increase my fontsize on click of the button. My id is block2</div>
         <button class="btn btn-primary" onclick="increaseFont()">Increase Font Size</button>
         <hr>
-        <div id="block3" >6. Can you change my font color to green on mouse over.. and roll it back to black when is mouse is moved out.. yeh..my
+        <div id="block3" onmouseover="changeFontColor()" onmouseout="changeFontColor1()">6. Can you change my font color to green on mouse over.. and roll it back to black when is mouse is moved out.. yeh..my
             id is block3</div>
         <hr>
-        <div id="block4" >7. On double click, can you hide me ?. My id is block4</div>
+        <div id="block4" ondblclick="hide()">7. On double click, can you hide me ?. My id is block4</div>
         <hr> 8. Can you please change all the boxes background color to green. All of them have class as box1 ?
         <div class="box1"></div>
         <div class="box1"></div>
@@ -50,9 +50,10 @@
         <div class="box2" onclick="changeBackColor('blue','box2')"></div>
         <div class="box2" onclick="changeBackColor('blue','box2')"></div>
         <hr> 10. Can you just make this textbox to accept only numbers ?. Don't use input type as number.
-        <input type="text" id="input1">
+        <input type="text" class="textfield" value="" id="extra7" name="extra7" onkeypress="return isNumber(event)">
         <hr>
         <p id='para2'>11. Can you add one more para below me with the text "I got generated on the fly...". My id is para2</p>
+        <p id="newpara"></p>
         <button class="btn btn-primary" onclick="addAdjacent()">Add new para</button>
         <hr>
         <p id='para3'>12. I don't like the fellow below me. Could you remove it. My id is para3 and next elment id is para4</p>
@@ -67,7 +68,7 @@
         <h3>DOM Events</h3>
 
         <p>1. Change the text entered in the input box to upper case when you move out of the input box.</p>
-        <input type="text" id="inputBox1" >
+        <input type="text" id="inputBox1" onblur="changeToUpper()" >
         <input type="text" id="inputBox2" >
         <hr>
         <p>2. When you leave the input field, transform the input text to camel case.</p>
