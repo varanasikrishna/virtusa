@@ -1,6 +1,8 @@
 const express = require('express');
-const app=express();
 const bodyparser=require('body-parser');
+const app=express();
+app.use(bodyparser.json());
+
 const studentsList=[
     {
         id : 1,
@@ -27,18 +29,31 @@ const studentsList=[
         dept : 'EIE'
     }
 ];
-app.get('api/student',(req,resp) =>{
+
+app.get('/api/student',(req,resp) =>{
     resp.json(studentsList);
 });
-app.post('api/student',(req,resp) =>{
+
+app.post('/api/student',(req,resp) =>{
     console.log(studentsList);
     const newStudent = {
-        ...req.body,
-        id : studentsList.length + 1
+        name: req.body.name,
+        age: req.body.age,
+        id:studentsList.length + 1
     };
+
     studentsList.push(newStudent);
-    resp.json(newStudent.id);
     resp.status(201);
+    resp.json(newStudent.id);
+    
+});
+
+app.delete('/api/delete/:id',(req,resp) =>{
+    console.log(req);
+    const idToBeDeleted=parseInt(req.params.id);
+    const studentToBeDeleted=studentsList.findIndex(student => student.id === idToBeDeleted);
+    studentsList.splice(studentToBeDeleted,1);
+    resp.json(idToBeDeleted);
 });
 
 app.listen(5000);
